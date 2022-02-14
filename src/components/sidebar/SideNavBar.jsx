@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { closedDrawerWidth, drawerWidth } from '../../util/constants';
 import NavBarContext from '../context/NavBarContext';
-import SideBarExpanded from './SIdeBarExpanded';
+import SideBarExpanded from './SideBarExpanded';
 import LoadingSkelton from '../common/LoadingSkelton';
 import SideBarCollapsed from './SideBarCollapsed';
 import PropTypes from 'prop-types';

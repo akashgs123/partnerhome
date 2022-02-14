@@ -1,7 +1,7 @@
 
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
-import SideBarExpanded from "../../components/sidebar/SIdeBarExpanded"
+import SideBarExpanded from "../../components/sidebar/SideBarExpanded"
 import { createBrowserHistory } from 'history';
 
 const mockHierarchicalNavItems = [{
