@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+import { CssBaseline, StyledEngineProvider } from '@mui/material';
+import { Box } from '@mui/system';
+import { useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
+import PageLoader from './components/common/PageLoader';
+import NavBarContext from './components/context/NavBarContext';
+import HeaderBar from './components/header/HeaderBar';
+import SideNavBar from './components/sidebar/SideNavBar';
+import { useNavigation } from './hooks/useNavigation';
 
 function App() {
+  
+  const {
+    navbarLoading,
+    navBarData,
+  } = useNavigation();
+
+  const pageLoading = navbarLoading;
+  const [open, setOpen] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://www.wayfair.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Wayfair
-        </a>
-      </header>
+       <StyledEngineProvider injectFirst>
+         <CssBaseline />
+         <Router>
+          <NavBarContext.Provider value={{
+            open,
+            setOpen
+          }}>
+            <PageLoader open={ pageLoading ?? false} />
+            
+            <Box sx={{ display: 'flex' }}>
+              <HeaderBar />
+              <SideNavBar navItems={ navBarData } loading = {navbarLoading} />
+            </Box>
+          </NavBarContext.Provider>
+        </Router>
+       </StyledEngineProvider>
     </div>
   );
 }
