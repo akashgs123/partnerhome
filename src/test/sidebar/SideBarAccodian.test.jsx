@@ -3,6 +3,21 @@ import { BrowserRouter } from 'react-router-dom';
 import SidebarAccordian from '../../components/sidebar/SidebarAccordian';
 import { createBrowserHistory } from 'history';
 
+const mockHistoryPush = jest.fn();
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useHistory: () => ({
+        push: mockHistoryPush,
+    }),
+    useLocation: () => ({
+        hash: '',
+        key: 'mka6qa47',
+        pathname: '/purchase_dashboard/index',
+        search: '?routeKey=purchase-dashboard',
+        state: null,
+    })
+}));
+
 const mockPlaneNavItems = [{
     children: [],
     hasAlert: null,
@@ -104,6 +119,33 @@ describe('SidebarAccordian', () => {
 
         expect(screen.getByTestId('link_menu-pricing-hub-overview').href).toContain('/supplier/pricing_hub/app/index?routeKey=menu-ticket')
         expect(screen.getByTestId('link_menu-pricing-hub-updates').href).toContain('/supplier/pricing/app/index?routeKey=menu-ticket')
+ 
+    });
+
+    it('should expand the accordian by default based on current route', () => {
+
+        const mockHierarchicalNavItemsRef = JSON.parse(JSON.stringify(mockHierarchicalNavItems))
+        mockHierarchicalNavItemsRef[1].id = 'purchase-dashboard'
+        render(
+            <BrowserRouter history = {history}>
+                <SidebarAccordian
+                    id='purchase-dashboard'
+                    parentRouteKey = 'purchase-dashboard'
+                    children={mockHierarchicalNavItemsRef}
+                    iconName= 'ticket'
+                    key='purchase-dashboard'
+                    title= 'Ticket'
+                />
+            </BrowserRouter>
+        )
+
+        expect(screen.getByText('Overview')).toBeVisible();
+        expect(screen.getByText('Pricing Updates')).toBeVisible();
+        expect(screen.getByTestId('link_menu-pricing-hub-overview')).toBeVisible();
+        expect(screen.getByTestId('link_menu-pricing-hub-updates')).toBeVisible();
+
+        expect(screen.getByTestId('link_menu-pricing-hub-overview').href).toContain('/supplier/pricing_hub/app/index?routeKey=purchase-dashboard')
+        expect(screen.getByTestId('link_menu-pricing-hub-updates').href).toContain('/supplier/pricing/app/index?routeKey=purchase-dashboard')
  
     });
 

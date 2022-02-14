@@ -1,5 +1,4 @@
-import { ExpandMoreSharp } from "@mui/icons-material";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+import { AccountCircleOutlined, ExpandMoreSharp } from "@mui/icons-material";
 import { Box, IconButton, MenuItem, Typography } from "@mui/material";
 import { useCallback, useState } from "react";
 import { userName } from "../../util/constants";
@@ -7,6 +6,11 @@ import { langOptions, menuItems } from "../../util/util";
 import CustomSelect from "../common/CustomSelect";
 import SelectMenu from "./SelectMenu";
 import Util from "../../util/util";
+
+const customSelectStyle = {
+  padding: '8px 16px',
+  width: '100%'
+}
 
 const HeaderMenu = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -20,7 +24,8 @@ const HeaderMenu = () => {
         setAnchorEl(null);
     };
 
-    const onLanguageSelect = useCallback((event) => {
+    const onLanguageSelect = useCallback((value) => {
+      console.log('Language:', value)
       handleClose();
     },[]);
 
@@ -43,7 +48,7 @@ const HeaderMenu = () => {
         color="secondary"
 
         >
-        <AccountCircle />
+        <AccountCircleOutlined />
         </IconButton>
     </>
     <SelectMenu
@@ -56,8 +61,11 @@ const HeaderMenu = () => {
           if(itm!== 'lang') {
             return <MenuItem key = {itm} onClick={handleClose}>{enTrans[itm]}</MenuItem>
           } else {
-            return <MenuItem key = {itm}>
+            return <MenuItem
+               sx = {{padding: 0}}
+               key = {itm}>
                <CustomSelect
+                selectSX={customSelectStyle}
                 defaultValue= 'en-gb'
                 options={langOptions}
                 onSelect={onLanguageSelect}

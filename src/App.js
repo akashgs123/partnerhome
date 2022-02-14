@@ -29,7 +29,7 @@ function App() {
           }}>
             <PageLoader open={ pageLoading ?? false} />
             
-            <Box sx={{ display: 'flex' }}>
+            <Box>
               <HeaderBar />
               <SideNavBar navItems={ navBarData } loading = {navbarLoading} />
             </Box>

@@ -1,9 +1,12 @@
+import React from 'react';
 import { ExpandMore, Home } from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, ListItemIcon, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import SideBarExpanded from './SIdeBarExpanded';
 import { navIconStyle } from '../common/styles';
 import PropTypes from 'prop-types';
+import { useParentRouteMatch } from '../../hooks/useParentRouteMatch';
+
 
 const StyledAccordian = styled(Accordion)({
   marginBlock: 0,
@@ -26,9 +29,12 @@ const SidebarAccordian = ({
     parentRouteKey,
     id
 }) => {
+    const match = useParentRouteMatch(parentRouteKey);
+
     return <StyledAccordian
     elevation={0}
     data-testid = {`acc_${id}`}
+    defaultExpanded = {match}
     id={id}>
     <StyledAccordionSummary
       expandIcon={<ExpandMore />}
@@ -64,4 +70,4 @@ SidebarAccordian.propTypes = {
 }
 
 
-export default SidebarAccordian;
+export default SidebarAccordian

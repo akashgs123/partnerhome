@@ -2,7 +2,13 @@ import { NativeSelect } from "@mui/material";
 import Util from "../../util/util";
 import PropTypes from 'prop-types';
 
-const CustomSelect = ({options,onSelect,defaultValue, variant, hasUnderLine = true}) => {
+const CustomSelect = ({
+        options,
+        onSelect,
+        defaultValue,
+        variant,
+        selectSX,
+        hasUnderLine = true}) => {
  
     const selectChange = (event) => {
         onSelect(event.currentTarget.value);
@@ -10,7 +16,8 @@ const CustomSelect = ({options,onSelect,defaultValue, variant, hasUnderLine = tr
     const enTrans = Util.getTranslations();
     return <NativeSelect
             sx = {
-               {...(!hasUnderLine && {
+               { width: '100%',
+                ...(!hasUnderLine && {
                 '&.MuiInput-underline: before': {
                     border: 'none !important',
                     outline: 'none !important'
@@ -25,6 +32,7 @@ const CustomSelect = ({options,onSelect,defaultValue, variant, hasUnderLine = tr
             defaultValue= {defaultValue}
             onChange={selectChange}
             inputProps={{
+                sx: selectSX ?? {},
                 name: 'nativeSelect',
                 id: 'native-select',
                 'data-testid': 'native-select'

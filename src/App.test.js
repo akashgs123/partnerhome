@@ -28,7 +28,7 @@ test('render the app', async () => {
 
   expect(navItm).toBeVisible();
   expect(screen.queryByTestId('partnerHomeLogo')).toBeVisible();
-  expect(screen.queryByTestId('AccountCircleIcon')).toBeVisible();
+  expect(screen.queryByTestId('AccountCircleOutlinedIcon')).toBeVisible();
   
   fireEvent.click(screen.getByTestId('MenuIcon'));
 

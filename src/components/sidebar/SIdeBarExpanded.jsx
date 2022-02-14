@@ -1,3 +1,4 @@
+import React, { memo } from "react";
 import SidebarAccordian from "./SidebarAccordian";
 import SideBarItem from "./SideBarItem";
 import PropTypes from 'prop-types';
@@ -36,4 +37,4 @@ SideBarExpanded.propTypes = {
     parentRouteKey: PropTypes.string
 };
 
-export default SideBarExpanded;
+export default memo(SideBarExpanded);

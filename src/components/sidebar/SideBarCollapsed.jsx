@@ -1,7 +1,6 @@
 import { Home } from "@mui/icons-material";
 import { Badge, Box } from "@mui/material";
-import { margin } from "@mui/system";
-import { useLocation } from "react-router-dom";
+import { useParentRouteMatch } from "../../hooks/useParentRouteMatch";
 import { secondaryColor } from "../../util/constants";
 import { navIconStyle } from "../common/styles";
 import { navItemType } from "./SidebarAccordian";
@@ -10,23 +9,22 @@ import { navItemType } from "./SidebarAccordian";
     
 const styles = {
     selectedNavStyle: {
-        borderLeftColor: secondaryColor,
-        width: '3px',
-        height: '100%',
-        borderLeftWidth: '3px',
-        borderLeftStyle: 'solid',
+        borderRightColor: secondaryColor,
+        borderRightWidth: '4px',
+        borderRightStyle: 'solid',
         borderTopRightRadius: '10px',
         borderBottomRightRadius: '10px',
         height: '35px'
+    },
+    unSelectedNav: {
+        paddingLeft: '4px'
     },
     collapsednavIconStyle: {
         ...navIconStyle,
     }
 }
 const CollapsedIcon = ({navItem}) => {
-    const location = useLocation();
-    const routeKey = new URLSearchParams(location.search).get('routeKey');
-    const match = routeKey === navItem.id || location.hash.includes(navItem.id);
+    const match = useParentRouteMatch(navItem.id);
 
     return  <Box
             data-testid = {`collapsedNav_${navItem.id}`}
@@ -46,7 +44,10 @@ const CollapsedIcon = ({navItem}) => {
 
 
         <Badge
-            sx = {styles.collapsednavIconStyle}
+            sx = {{
+                ...styles.collapsednavIconStyle,
+                ...(!match && styles.unSelectedNav)
+            }}
             invisible = {!navItem.hasAlert}
             variant = 'dot'
             color = 'warning'

@@ -1,4 +1,4 @@
-import  React, {useContext} from 'react';
+import  React, {useContext } from 'react';
 import { styled } from '@mui/material/styles';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -21,7 +21,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-start',
 }));
 
-export default function SideNavBar({navItems, loading = true}) {
+const SideNavBar = ({navItems, loading = true}) => {
   const {
     open,
     setOpen
@@ -77,3 +77,5 @@ SideNavBar.propTypes = {
   navItems: navItemType,
   loading: PropTypes.bool
 }
+
+export default SideNavBar;
