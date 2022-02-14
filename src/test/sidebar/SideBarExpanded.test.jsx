@@ -49,3 +49,4 @@ describe('SideBarExpanded', () => {
         expect(screen.queryByText('Pricing Updates')).not.toBeVisible()
     })
  })
+ 

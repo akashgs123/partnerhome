@@ -44,6 +44,7 @@ const CustomSelect = ({
 }
 
 CustomSelect.propTypes = {
+    selectSX: PropTypes.object,
     onSelect: PropTypes.func,
     options: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string,

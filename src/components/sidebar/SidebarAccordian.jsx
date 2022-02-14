@@ -2,7 +2,7 @@ import React from 'react';
 import { ExpandMore, Home } from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, ListItemIcon, Typography } from '@mui/material';
 import styled from '@emotion/styled';
-import SideBarExpanded from './SIdeBarExpanded';
+import SideBarExpanded from './SideBarExpanded';
 import { navIconStyle } from '../common/styles';
 import PropTypes from 'prop-types';
 import { useParentRouteMatch } from '../../hooks/useParentRouteMatch';
