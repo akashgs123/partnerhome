@@ -3,11 +3,17 @@
   "version": "0.1.1",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.4.1",
+    "@mui/material": "^5.4.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-query": "^3.34.14",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
@@ -15,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "test:coverage":"npm test -- --coverage --watchAll"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +42,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
   }
 }
